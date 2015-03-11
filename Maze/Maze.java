@@ -44,13 +44,19 @@ public class Maze
         Point end = new Point(x2, y2);
         Point start = new Point(x1, y1);
 
-        ArrayList<Point> path = computeShortestPath(end, start);
+        if (!valid(end) || !valid(start))
+        {
+            System.out.println("You have entered an invalid position!");
+            return 0;
+        }
 
         if (isWall(end) || isWall(start))
         {
-            System.out.println("Sorry you selected a wall!");
+            System.out.println("The position you have entered is a wall!");
             return 0;
         }
+
+        ArrayList<Point> path = computeShortestPath(end, start);
 
         for (Point pp : path)
         {
